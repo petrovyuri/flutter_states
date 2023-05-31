@@ -1,5 +1,6 @@
 part of 'counter_bloc.dart';
 
+/// События счетчика
 sealed class CounterEvent extends Equatable {}
 
 /// Событие увеличения счетчика
