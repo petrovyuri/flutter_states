@@ -7,6 +7,7 @@ final class CounterIncrementPressed extends CounterEvent {
   CounterIncrementPressed();
   @override
   List<Object?> get props => [];
+
 }
 
 /// Событие уменьшения счетчика
