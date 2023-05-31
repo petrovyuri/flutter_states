@@ -21,28 +21,28 @@ class _CounterScreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Flutter Demo Home Page"),
+        title: const Text("Friflex Митап"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Stack(
           children: [
             Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text(
-                    'You have pushed the button this many times:',
-                  ),
-                  BlocBuilder<CounterBloc, CounterState>(
-                    builder: (context, state) {
-                      return Text(
-                        state.counter.toString(),
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      );
-                    },
-                  ),
-                ],
+              child: BlocBuilder<CounterBloc, CounterState>(
+                builder: (context, state) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(state.title),
+                      state.isLoading
+                          ? const CircularProgressIndicator()
+                          : Text(
+                              state.counter.toString(),
+                              style: Theme.of(context).textTheme.headlineMedium,
+                            ),
+                    ],
+                  );
+                },
               ),
             ),
             Align(
@@ -52,6 +52,15 @@ class _CounterScreenView extends StatelessWidget {
                     context.read<CounterBloc>().add(CounterIncrementPressed()),
                 tooltip: 'Increment',
                 child: const Icon(Icons.add),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: FloatingActionButton(
+                onPressed: () =>
+                    context.read<CounterBloc>().add(CounterWaitingPressed()),
+                tooltip: 'Waiting',
+                child: const Icon(Icons.waving_hand),
               ),
             ),
             Align(
