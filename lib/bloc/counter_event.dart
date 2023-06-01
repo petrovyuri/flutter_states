@@ -1,23 +1,13 @@
 part of 'counter_bloc.dart';
 
-/// События счетчика
-sealed class CounterEvent extends Equatable {
-  const CounterEvent();
-  @override
-  List<Object?> get props => [];
-}
+@freezed
+class CounterEvent with _$CounterEvent {
 
-/// Событие увеличения счетчика
-final class CounterIncrementPressed extends CounterEvent {
-  const CounterIncrementPressed();
-}
+  const factory CounterEvent.waitingPressed() = _CounterWaitingPressed;
 
-/// Событие уменьшения счетчика
-final class CounterDecrementPressed extends CounterEvent {
-  const CounterDecrementPressed();
-}
+  const factory CounterEvent.initialized() = _CounterInitialized;
 
-/// Событие ожидания
-final class CounterWaitingPressed extends CounterEvent {
-  const CounterWaitingPressed();
+  const factory CounterEvent.decrementPressed() = _CounterDecrementPressed;
+
+  const factory CounterEvent.incrementPressed() = _CounterIncrementPressed;
 }

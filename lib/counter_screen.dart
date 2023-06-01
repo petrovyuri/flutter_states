@@ -34,12 +34,13 @@ class _CounterScreenView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(state.title),
-                      state.isLoading
-                          ? const CircularProgressIndicator()
-                          : Text(
-                              state.counter.toString(),
-                              style: Theme.of(context).textTheme.headlineMedium,
-                            ),
+                      state.maybeMap(
+                        orElse: () => Text(
+                          state.counter.toString(),
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                        waiting: (_) => const CircularProgressIndicator(),
+                      ),
                     ],
                   );
                 },
@@ -50,7 +51,7 @@ class _CounterScreenView extends StatelessWidget {
               child: FloatingActionButton(
                 onPressed: () => context
                     .read<CounterBloc>()
-                    .add(const CounterIncrementPressed()),
+                    .add(const CounterEvent.incrementPressed()),
                 tooltip: 'Increment',
                 child: const Icon(Icons.add),
               ),
@@ -60,7 +61,7 @@ class _CounterScreenView extends StatelessWidget {
               child: FloatingActionButton(
                 onPressed: () => context
                     .read<CounterBloc>()
-                    .add(const CounterWaitingPressed()),
+                    .add(const CounterEvent.waitingPressed()),
                 tooltip: 'Waiting',
                 child: const Icon(Icons.waving_hand),
               ),
@@ -70,7 +71,7 @@ class _CounterScreenView extends StatelessWidget {
               child: FloatingActionButton(
                 onPressed: () => context
                     .read<CounterBloc>()
-                    .add(const CounterDecrementPressed()),
+                    .add(const CounterEvent.decrementPressed()),
                 tooltip: 'Decrement',
                 child: const Icon(Icons.remove),
               ),
