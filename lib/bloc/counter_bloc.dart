@@ -13,5 +13,9 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     on<CounterDecrementPressed>((event, emit) {
       emit(CounterIncrementState(state.counter - 1));
     });
+
+    on<CounterWaitingPressed>((event, emit) {
+      emit(CounterWaitingState(state.counter));
+    });
   }
 }

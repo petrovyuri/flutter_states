@@ -5,6 +5,13 @@ sealed class CounterState extends Equatable {
   const CounterState(this.counter);
 }
 
+final class CounterWaitingState extends CounterState {
+  const CounterWaitingState(super.counter);
+
+  @override
+  List<Object?> get props => [counter];
+}
+
 final class CounterInitialState extends CounterState {
   const CounterInitialState(super.counter);
 
