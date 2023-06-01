@@ -20,7 +20,7 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     on<CounterWaitingPressed>((event, emit) {
       emit(state.copyWith(
         isLoading: true,
-        counter: state.counter + 1,
+        counter: state.counter,
         title: 'Счетчик в ожидании',
       ));
     });

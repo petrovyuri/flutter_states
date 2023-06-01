@@ -48,8 +48,9 @@ class _CounterScreenView extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton(
-                onPressed: () =>
-                    context.read<CounterBloc>().add(CounterIncrementPressed()),
+                onPressed: () => context
+                    .read<CounterBloc>()
+                    .add(const CounterIncrementPressed()),
                 tooltip: 'Increment',
                 child: const Icon(Icons.add),
               ),
@@ -57,8 +58,9 @@ class _CounterScreenView extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: FloatingActionButton(
-                onPressed: () =>
-                    context.read<CounterBloc>().add(CounterWaitingPressed()),
+                onPressed: () => context
+                    .read<CounterBloc>()
+                    .add(const CounterWaitingPressed()),
                 tooltip: 'Waiting',
                 child: const Icon(Icons.waving_hand),
               ),
@@ -66,8 +68,9 @@ class _CounterScreenView extends StatelessWidget {
             Align(
               alignment: Alignment.bottomLeft,
               child: FloatingActionButton(
-                onPressed: () =>
-                    context.read<CounterBloc>().add(CounterDecrementPressed()),
+                onPressed: () => context
+                    .read<CounterBloc>()
+                    .add(const CounterDecrementPressed()),
                 tooltip: 'Decrement',
                 child: const Icon(Icons.remove),
               ),
